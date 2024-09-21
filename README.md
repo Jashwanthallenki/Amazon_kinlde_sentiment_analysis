@@ -23,3 +23,36 @@ for converting a dataset to w2v
 10. Prediction of the model
 11. For better prediction score we should perform data preprocessing and cleaning
 
+
+Basic code for Preprocessing and cleaning of the dataset
+
+  import re
+  import nltk
+  from nltk.corpus import stopwords
+  from nltk.stem import WordNetLemmatizer
+  
+  nltk.download('wordnet')
+  nltk.download('omw-1.4')
+  nltk.download('stopwords')
+  def cleanData(txt):
+      cleanTxt = re.sub(r'http\S+\s',' ',txt)
+  
+      cleanTxt = re.sub(r'@\S+',' ',cleanTxt)
+  
+      cleanTxt = re.sub(r'#\S+',' ',cleanTxt)
+  
+      cleanTxt = re.sub(r'[^A-Za-z0-9\s]',' ',cleanTxt)
+  
+      cleanTxt = cleanTxt.split()
+  
+      cleanTxt = [word for word in cleanTxt if word.lower() not in stopwords.words('english')]
+  
+  
+      lemma = WordNetLemmatizer()
+  
+      cleanTxt = [lemma.lemmatize(word.lower(),pos='v') for word in cleanTxt]
+  
+      cleanTxt = ' '.join(cleanTxt)
+  
+      return cleanTxt
+  
