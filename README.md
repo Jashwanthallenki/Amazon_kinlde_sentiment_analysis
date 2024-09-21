@@ -27,14 +27,21 @@ for converting a dataset to w2v
 Basic code for Preprocessing and cleaning of the dataset
 
   import re
+  
   import nltk
+  
   from nltk.corpus import stopwords
+  
   from nltk.stem import WordNetLemmatizer
   
   nltk.download('wordnet')
+  
   nltk.download('omw-1.4')
+  
   nltk.download('stopwords')
+  
   def cleanData(txt):
+  
   cleanTxt = re.sub(r'http\S+\s',' ',txt)
   
   cleanTxt = re.sub(r'@\S+',' ',cleanTxt)
